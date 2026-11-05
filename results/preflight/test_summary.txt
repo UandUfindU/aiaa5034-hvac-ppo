@@ -1,3 +1,0 @@
-Slurm 801894, exit 0
-7 passed, 14 warnings in 40.64s
-CPU and CUDA smokes: 2048 actual steps each; no scientific conclusions.

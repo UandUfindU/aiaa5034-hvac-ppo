@@ -4,9 +4,9 @@ Pure Python implementation of a toy thermal environment, reactive thermostat and
 always-off references, and seven one-factor-at-a-time Stable-Baselines3 PPO conditions.
 See `TASK_SPEC.md` for the complete assignment. The full HPC experiment completed:
 21 models and 420 held-out PPO episode records, plus thermostat/off references.
-Actual findings are in `docs/experimental_findings.md`; bounded execution exports
-are in `results/`, as requested by the current execution controller. The separate
-report project is https://github.com/UandUfindU/aiaa5034-hvac-ppo-report.
+Actual findings and bounded execution exports are maintained in the separate
+report project: https://github.com/UandUfindU/aiaa5034-hvac-ppo-report
+(`docs/experimental_findings.md` and `results/` there). This repository maintains code.
 
 ## Installation and commands
 
@@ -124,7 +124,7 @@ python -m cluster.verify --root outputs/new-full
 python -m src.aggregate --input-dir outputs/new-full --output-dir outputs/new-full/tables
 python -m src.plot --input-dir outputs/new-full/tables --output-dir outputs/new-full/figures
 # Recreate figures from the committed bounded tables without training:
-python -m src.plot --input-dir results/tables --output-dir outputs/replotted
+python -m src.plot --input-dir ../hvac-ppo-report/results/tables --output-dir outputs/replotted
 ```
 
 The loop writes three per-seed invocation manifests, as expected by the HPC
