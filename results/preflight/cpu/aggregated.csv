@@ -1,0 +1,4 @@
+config,episode_return_mean,episode_return_std,energy_kwh_mean,energy_kwh_std,comfort_pct_mean,comfort_pct_std,deviation_c_mean,deviation_c_std,n_train_seeds
+always_off,-48.25561157948392,,0.0,,52.083333333333336,,0.318982524222716,,1
+default,-134.62260180683958,,81.09179098159075,,44.94047619047619,,0.4735301921390356,,1
+thermostat,-1.770002053911182,,10.673686981201172,,27.38095238095238,,0.03895956580717695,,1

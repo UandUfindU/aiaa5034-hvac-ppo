@@ -1,0 +1,139 @@
+{
+  "starting_sha": "aa99d381b5af400f728f948bc8b85ff2d9e630de",
+  "active_sha": "c63e6bae6305ad875c9bc0c0724b6593f06a5388",
+  "publication_sha": "028f94a3a16d939b2f2ec110483baba80410ad06",
+  "deadline_utc": "2026-11-07T07:21:00Z",
+  "cpu_hours_cap": 32,
+  "gpu_hours_cap": 8,
+  "job_reservations": [
+    {
+      "id": "preflight-1",
+      "purpose": "unit tests and CPU/CUDA 2048 benchmark",
+      "cpus": 1,
+      "gpus": 1,
+      "time_limit_seconds": 600,
+      "cpu_hours_reserved": 0.16666666666666666,
+      "gpu_hours_reserved": 0.16666666666666666,
+      "job_id": "801894",
+      "status": "COMPLETED",
+      "submission_error": "scheduler default account API timeout; no job ID returned",
+      "account": "yfeng044",
+      "partition": "debug",
+      "elapsed_seconds": 86,
+      "cpu_hours_used": 0.02388888888888889,
+      "gpu_hours_used": 0.02388888888888889,
+      "accounting": "sacct AllocTRES cpu=1,gres/gpu=1; ElapsedRaw=86; ExitCode=0:0"
+    },
+    {
+      "id": "full-seed0-1",
+      "purpose": "full seven-condition matrix seed 0",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 1800,
+      "cpu_hours_reserved": 0.5,
+      "gpu_hours_reserved": 0,
+      "job_id": "801907",
+      "status": "COMPLETED",
+      "elapsed_seconds": 298,
+      "cpu_hours_used": 0.08277777777777778,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1, no GPU; ElapsedRaw=298; ExitCode=0:0"
+    },
+    {
+      "id": "full-seed1-1",
+      "purpose": "full seven-condition matrix seed 1",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 1800,
+      "cpu_hours_reserved": 0.5,
+      "gpu_hours_reserved": 0,
+      "job_id": "801908",
+      "status": "COMPLETED",
+      "elapsed_seconds": 300,
+      "cpu_hours_used": 0.08333333333333333,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1, no GPU; ElapsedRaw=300; ExitCode=0:0"
+    },
+    {
+      "id": "full-seed2-1",
+      "purpose": "full seven-condition matrix seed 2",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 1800,
+      "cpu_hours_reserved": 0.5,
+      "gpu_hours_reserved": 0,
+      "job_id": "801909",
+      "status": "COMPLETED",
+      "elapsed_seconds": 297,
+      "cpu_hours_used": 0.0825,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1, no GPU; ElapsedRaw=297; ExitCode=0:0"
+    },
+    {
+      "id": "aggregate-1",
+      "purpose": "verify 21 models and 420 rows; aggregate and plot",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 300,
+      "cpu_hours_reserved": 0.08333333333333333,
+      "gpu_hours_reserved": 0,
+      "job_id": "801918",
+      "status": "COMPLETED",
+      "elapsed_seconds": 27,
+      "cpu_hours_used": 0.0075,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1; ElapsedRaw=27; ExitCode=0:0"
+    },
+    {
+      "id": "plot-review-1",
+      "purpose": "test publication layout from saved final tables only",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 180,
+      "cpu_hours_reserved": 0.05,
+      "gpu_hours_reserved": 0,
+      "job_id": "801933",
+      "status": "COMPLETED",
+      "elapsed_seconds": 7,
+      "cpu_hours_used": 0.0019444444444444444,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1; ElapsedRaw=7; ExitCode=0:0"
+    },
+    {
+      "id": "final-export-1",
+      "purpose": "regenerate official figures from pushed tested publication code and capture hardware",
+      "cpus": 1,
+      "gpus": 0,
+      "time_limit_seconds": 180,
+      "cpu_hours_reserved": 0.05,
+      "gpu_hours_reserved": 0,
+      "job_id": "801936",
+      "status": "COMPLETED",
+      "elapsed_seconds": 7,
+      "cpu_hours_used": 0.0019444444444444444,
+      "gpu_hours_used": 0,
+      "accounting": "sacct cpu=1; ElapsedRaw=7; ExitCode=0:0"
+    }
+  ],
+  "used_budget": {
+    "cpu_hours": 0.2838888888888889,
+    "gpu_hours": 0.02388888888888889
+  },
+  "remaining_budget": {
+    "cpu_hours": 31.71611111111111,
+    "gpu_hours": 7.976111111111111
+  },
+  "preflight": {
+    "tests_passed": 7,
+    "cpu_seconds": 1.2265351200476289,
+    "cuda_seconds": 3.1997664750088006,
+    "selected_device": "cpu"
+  },
+  "completeness": {
+    "models": 21,
+    "ppo_episode_rows": 420,
+    "reference_episode_rows": 40,
+    "reload_verified": true
+  },
+  "figure_inspection": "Five PNG/PDF families inspected through in-memory HPC image thumbnails; scatter labels repaired and re-inspected successfully"
+}

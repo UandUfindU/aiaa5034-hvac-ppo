@@ -117,7 +117,9 @@ used for all 21 models. See docs/HPC_EXECUTION.md for scheduler/resource control
 export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 python -m pytest -q
 python -m src.experiments --smoke --device cpu --output-dir outputs/new-smoke
-python -m src.experiments --full --device cpu --seeds 0 1 2 --total-timesteps 100000 --output-dir outputs/new-full
+for seed in 0 1 2; do
+  python -m src.experiments --full --device cpu --seed "$seed" --total-timesteps 100000 --output-dir outputs/new-full
+done
 python -m cluster.verify --root outputs/new-full
 python -m src.aggregate --input-dir outputs/new-full --output-dir outputs/new-full/tables
 python -m src.plot --input-dir outputs/new-full/tables --output-dir outputs/new-full/figures
@@ -125,8 +127,6 @@ python -m src.plot --input-dir outputs/new-full/tables --output-dir outputs/new-
 python -m src.plot --input-dir results/tables --output-dir outputs/replotted
 ```
 
-The verifier expects three per-seed invocation manifests. For exact HPC-style
-verification, run the full command separately with `--seed 0`, `--seed 1`,
-`--seed 2` against the same new-full root. Completed policy runs are never
-overwritten. Full models/logs remain on HPC3 at
+The loop writes three per-seed invocation manifests, as expected by the HPC
+completeness verifier. Completed policy runs are never overwritten. Full models/logs remain on HPC3 at
 `/data/user/yfeng044/projects/aiaa5034-hvac-artifacts/full`.
