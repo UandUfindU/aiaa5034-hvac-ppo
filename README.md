@@ -3,7 +3,9 @@
 Pure Python implementation of a toy thermal environment, reactive thermostat and
 always-off references, and seven one-factor-at-a-time Stable-Baselines3 PPO conditions.
 See `TASK_SPEC.md` for the complete assignment. No experimental finding is assumed
-before execution. Final cloud results belong in `results/` and `docs/experimental_findings.md`.
+before execution. Final cloud results, figures and the Overleaf report belong in the
+separate private repository https://github.com/UandUfindU/aiaa5034-hvac-ppo-report.
+This repository owns runnable code, configuration, tests and technical documentation.
 
 ## Installation and commands
 
@@ -83,7 +85,8 @@ not scientific conclusions.
 The user authorizes GreenCloud to execute, debug, commit fixes, push results via this
 private GitHub repository, and email completion or actionable blockers using its
 existing configured mail helper. See `docs/CLOUD_HANDOFF.md` for bounded execution.
-Git stores source and bounded CSV/figures/reports; full logs and models remain on HPC.
+This Git repository stores source; the separate report Git repository stores bounded
+CSV/figures/reports and executable-code provenance. Full logs and models remain on HPC.
 Never put credentials in Git. Preserve all unrelated cloud jobs and project files.
 
 ## Attribution

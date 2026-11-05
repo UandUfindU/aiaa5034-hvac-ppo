@@ -1,5 +1,21 @@
 # Authorized cloud execution handoff
 
+## Latest user instruction: two independent GitHub projects
+
+As of 2026-11-05 the user explicitly requires separate code and report projects.
+Code: https://github.com/UandUfindU/aiaa5034-hvac-ppo .
+Report: https://github.com/UandUfindU/aiaa5034-hvac-ppo-report .
+This supersedes instructions below to commit final exports or findings in the code
+repository. Put final figures, bounded tables, manifests, analysis and LaTeX manuscript
+in the report repository; retain runnable source/config/tests in the code repository.
+Report initial scaffold SHA: 96d274c (resolve full SHA through GitHub before checkout).
+The report will be uploaded to Overleaf: `main.tex`, standard packages, relative asset
+paths and bibliography; compile and visually validate final PDF, target 10 total
+pages required by the course. Include exact executed code commit and artifact hashes.
+Do not invent author/team identity. Do not configure/upload to Overleaf without access.
+Keep existing experiment jobs and singleton supervisor; adjust destinations without
+restarting completed training. Completion mail should link both final commits.
+
 User request (2026-11-05, Asia/Shanghai): create a homework subdirectory, implement
 the task; prefer cloud execution; submit code to cloud, which owns making it work
 and returning real results, notify by email, use GitHub as exchange medium.
