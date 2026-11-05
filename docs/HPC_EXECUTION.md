@@ -29,3 +29,17 @@ failed runs must remain <=32 CPUh and <=8 GPUh, <=4 concurrent project jobs.
 Deadline 2026-11-07T07:21Z. Reservations are replaced only by sacct allocated
 TRES elapsed accounting. No unrelated jobs are cancelled. No progress email;
 terminal notification is deduplicated by the existing outer supervisor.
+
+## Passed preflight and device decision
+
+Slurm 801894 (debug, ACD1-63): COMPLETED exit 0, 86 allocated seconds,
+1 CPU / 1 GPU = 0.023889 CPUh and GPUh. Seven tests passed. Both explicit
+CPU/CUDA smoke runs reached 2048 steps, and aggregate/plot emitted five PNG/PDF
+pairs. Training/evaluation timer: CPU 1.226535 s, CUDA 3.199766 s (one seed,
+small MLP, one CPU thread). Choose CPU for all full conditions. This measurement
+excludes interpreter startup and is a short benchmark, not a general hardware claim.
+Thermostat smoke return -1.770002 versus off -48.255612 verifies reward sanity;
+2048-step PPO is not a scientific performance result. No physics/reward/settings
+were adjusted based on these test scenarios. All full jobs use the original
+frozen settings and final checkpoints. Full jobs request 30 minutes per seed
+(one CPU, no GPU); measured smoke implies ample headroom for seven conditions.

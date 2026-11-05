@@ -21,6 +21,7 @@ case "$mode" in
   "$PY" -m src.experiments --full --device cpu --seed "$seed" --total-timesteps 100000 --output-dir "$ROOT/full"
   ;;
  aggregate)
+  "$PY" -m cluster.verify --root "$ROOT/full"
   "$PY" -m src.aggregate --input-dir "$ROOT/full" --output-dir "$ROOT/full/tables"
   "$PY" -m src.plot --input-dir "$ROOT/full/tables" --output-dir "$ROOT/full/figures"
   ;;
