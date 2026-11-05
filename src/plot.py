@@ -23,12 +23,29 @@ def main():
         ax.set_ylabel(ylabel); ax.tick_params(axis='x',rotation=35)
         ax.set_title('Final policy: mean +/- SD across training seeds; references have no training variance')
         save(fig,name)
-    fig,ax=plt.subplots(figsize=(9,5))
-    for name in names:
+    fig,(ax,detail)=plt.subplots(1,2,figsize=(13,5))
+    detail_index=0
+    for i,name in enumerate(names):
         z=s[s.config==name]; x=z.energy_kwh; y=z.comfort_pct
-        ax.errorbar(x.mean(),y.mean(),xerr=x.std() if len(x)>1 else 0,yerr=y.std() if len(y)>1 else 0,fmt='o',capsize=3)
-        ax.annotate(name,(x.mean(),y.mean()),xytext=(5,5),textcoords='offset points',fontsize=8)
-    ax.set_xlabel('Energy (kWh / episode)'); ax.set_ylabel('Comfort violation rate (%)'); save(fig,'fig_comfort_energy_tradeoff')
+        color=plt.get_cmap('tab10')(i)
+        kw=dict(xerr=x.std() if len(x)>1 else 0,yerr=y.std() if len(y)>1 else 0,
+                fmt='o',capsize=3,color=color)
+        ax.errorbar(x.mean(),y.mean(),label=name,**kw)
+        if y.mean()<5:
+            detail.errorbar(x.mean(),y.mean(),**kw)
+            detail.annotate(name,(x.mean(),y.mean()),xytext=(.67,.15+.16*detail_index),
+                            textcoords='axes fraction',fontsize=9,color=color,
+                            arrowprops=dict(arrowstyle='-',color=color,lw=.7))
+            detail_index+=1
+    ax.legend(fontsize=8,loc='center left'); ax.set_title('All methods (3 PPO seeds; mean +/- SD)')
+    detail.set_title('Detail: mean comfort violation below 5%')
+    detail.set_ylim(-.25,5)
+    low=s.groupby('config')[['energy_kwh','comfort_pct']].mean()
+    low=low[low.comfort_pct<5]
+    if len(low): detail.set_xlim(low.energy_kwh.min()-8,low.energy_kwh.max()+18)
+    for panel in [ax,detail]:
+        panel.set_xlabel('Energy (kWh / episode)'); panel.set_ylabel('Comfort violation rate (%)')
+    save(fig,'fig_comfort_energy_tradeoff')
     v=pd.read_csv(root/'validation.csv').groupby(['config','seed','steps']).episode_return.mean().reset_index()
     fig,axes=plt.subplots(1,3,figsize=(14,4),sharey=True)
     for ax,group,title in zip(axes,[['default','clip_010','clip_030'],['default','gae_090','gae_099'],['default','epochs_3','epochs_20']],['Clip range','GAE lambda','Epochs']):

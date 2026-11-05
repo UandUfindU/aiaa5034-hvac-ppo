@@ -2,10 +2,11 @@
 
 Pure Python implementation of a toy thermal environment, reactive thermostat and
 always-off references, and seven one-factor-at-a-time Stable-Baselines3 PPO conditions.
-See `TASK_SPEC.md` for the complete assignment. No experimental finding is assumed
-before execution. Final cloud results, figures and the Overleaf report belong in the
-separate private repository https://github.com/UandUfindU/aiaa5034-hvac-ppo-report.
-This repository owns runnable code, configuration, tests and technical documentation.
+See `TASK_SPEC.md` for the complete assignment. The full HPC experiment completed:
+21 models and 420 held-out PPO episode records, plus thermostat/off references.
+Actual findings are in `docs/experimental_findings.md`; bounded execution exports
+are in `results/`, as requested by the current execution controller. The separate
+report project is https://github.com/UandUfindU/aiaa5034-hvac-ppo-report.
 
 ## Installation and commands
 
@@ -102,3 +103,30 @@ original project code. No third-party repository source was copied.
 
 The official course also requires a ten-page team report and a presentation; these
 are separate from the runnable code-agent deliverable described in `TASK_SPEC.md`.
+
+
+## Executed cloud reproduction
+
+Training SHA: `c63e6bae6305ad875c9bc0c0724b6593f06a5388`. All scientific settings
+above remained frozen. Runtime deviation: Python 3.12 / torch 2.13.0+cu130 with
+pinned requirements.txt packages; seven tests and all model reloads passed.
+CPU was 2.61x faster than CUDA in the short 2048-step benchmark and was explicitly
+used for all 21 models. See docs/HPC_EXECUTION.md for scheduler/resource controls.
+
+```bash
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+python -m pytest -q
+python -m src.experiments --smoke --device cpu --output-dir outputs/new-smoke
+python -m src.experiments --full --device cpu --seeds 0 1 2 --total-timesteps 100000 --output-dir outputs/new-full
+python -m cluster.verify --root outputs/new-full
+python -m src.aggregate --input-dir outputs/new-full --output-dir outputs/new-full/tables
+python -m src.plot --input-dir outputs/new-full/tables --output-dir outputs/new-full/figures
+# Recreate figures from the committed bounded tables without training:
+python -m src.plot --input-dir results/tables --output-dir outputs/replotted
+```
+
+The verifier expects three per-seed invocation manifests. For exact HPC-style
+verification, run the full command separately with `--seed 0`, `--seed 1`,
+`--seed 2` against the same new-full root. Completed policy runs are never
+overwritten. Full models/logs remain on HPC3 at
+`/data/user/yfeng044/projects/aiaa5034-hvac-artifacts/full`.
